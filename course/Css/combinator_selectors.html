@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combinators selectors</title>
+    <style>
+        div .udemy #a h1  {
+            background-color: red;
+        }
+        #a > h2 {
+            background-color: turquoise;
+        }
+        h1 > span {
+            background-color: yellow;
+        }
+        p ~ h1 {
+            background-color: peachpuff;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="udemy">
+            <div id="a">
+                <h1>Coding on wednesday</h1>
+                <h2>Colouring on thursday</h2>
+            </div>
+        </div>
+    </div>
+    <h1><span>hi there. </span>Code h1</h1>
+    <p>Franks code p</p>
+    <h1>Code h1</h1>
+    <h1>Code h1</h1>
+    <h1>Code h1</h1>
+    <h2>Code h2</h2>
+    <h2>Code h2</h2>
+    <p>Code p</p>
+    <h1>Rats</h1>
+</body>
+</html>
