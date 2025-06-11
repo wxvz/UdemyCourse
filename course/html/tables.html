@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        table tr td {
+            text-align: center;
+            background-color: grey;
+        }
+        table tr th {
+            text-align: center;
+            background-color: bisque;
+        }
+    </style>
+</head>
+
+<!--
+<table>: Defines the beginning of the table.
+
+<tr>: Defines a row in the table.
+
+<th>: Defines a header cell in the table.
+
+<td>: Defines a data cell in the table.
+-->
+
+<body>
+    <table border="1" width="400px" cellspacing="10" cellpadding="5">
+        <caption> This is a table of students </caption> <!-- title -->
+        <thead> <!-- should stay at head cus of thead -->
+            <tr height="60px">
+                <th>Name</th>
+                <th>Age</th>
+                <th>City</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="3">Fakl</td>
+                <td>1</td>
+                <td>dubn</td>
+            </tr>
+             <tr>
+                
+                <td>15</td>
+                <td>lun</td>
+            </tr>
+            <tr>
+                
+                <td>15</td>
+                <td>lun</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+               <td colspan="3">footer</td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>
