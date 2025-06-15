@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pserudo class in CSS</title>
+    <style>
+        /* p:first-child {
+            background-color: black ;
+            color: white;
+        } */
+        /* p:last-child {
+            background-color: rgb(197, 82, 82) ;
+            color: white;
+        } */
+        /* p:nth-child(1n) {
+            background-color: orange ;
+            color: white;
+        } */
+        /* p:nth-last-child(5) {
+            background-color: green ;
+            color: white;
+        } */
+        /* p:nth-of-type(1) {
+            background-color: lightsalmon ;
+            color: white;
+        } */
+        /* p:nth-last-of-type(3) {
+            background-color: greenyellow ;
+            color: white;
+        } */
+        p :only-child {
+            background-color: plum ;
+            color: white;
+        }
+        p:empty {
+            border: 1px solid black;
+        }
+        p:not(.para){
+            border: 1px solid black;
+        }
+        a:link {
+            border: 1px dotted red;
+        }
+        a:hover {
+            color: black;
+        }
+        a:active {
+            color: yellow;
+        }
+        a:visited {
+             color: brown;
+        }
+    </style>
+</head>
+<body> <!-- 7 children-->
+    <ul>
+        <li><a href="#">List item...1</a></li>
+        <li><a href="#">List item...2</a></li>
+        <li><a href="#">List item...3</a></li>
+        <li><a href="#">List item...4</a></li>
+        <li><a href="#">List item...5</a></li>
+    </ul>
+    <p>Paragraph...2 child of body</p>
+    <p>Paragraph...3 child of body</p>
+    <p>Paragraph...4 child of body</p>
+    <p></p>
+    <div>
+        <p>Paragraph...1 child of div</p>
+        <p class="para">Paragraph...2 child of div</p>
+        <p>Paragraph...3 child of div</p>
+        <p>Paragraph...4 child of div</p>
+    </div>
+    <div>
+        <p>Paragraph...1 child of 2nd div</p>
+    </div>
+    <ul>
+        <li>List item...1</li>
+        <li>List item...2</li>
+        <li>List item...3</li>
+        <li>List item...4</li>
+        <li>List item...5</li>
+    </ul>
+</body>
+</html>
