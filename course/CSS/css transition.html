@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Transition</title>
+    <style>
+        div {
+            width: 100px;
+            height: 40px;
+            background-color: grey;
+            transition: all 1s ease 2s;
+            margin-bottom: 100px;
+            /* transition-property: width, height, background-color; */
+            /* transition-duration: 1s,2s,3s; */
+            /* transition-duration: 1s;
+            transition-timing-function: ease; */
+        }
+        div:hover {
+            width:200px;
+            height: 100px;
+            background-color: red;
+        }
+        input {
+            width: 50px;
+            background-color: grey;
+            transition-property: width;
+            transition-duration: 1s;
+        }
+        input:focus {
+            width: 100px;
+        }
+    </style>
+</head>
+<!--
+ease            slow start  then fast then slow end;
+linear          same speed from start to end
+ease-in         slow start
+ease-out        slow end
+ease-in-out     slow start and end
+transition
+transition-property
+transition-duratiuon   
+transition-timing-function  
+transition-delay 
+-->
+<body>
+    <div>
+
+    </div>
+    <form>
+        <input type="text">
+    </form>
+</body>
+</html>
