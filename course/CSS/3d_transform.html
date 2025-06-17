@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3d transform in css</title>
+    <style>
+        #main {
+            width: 300px;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+            height: 200px;
+            margin-left: 200px;
+            background-color: brown;
+        }
+        #box {
+            width: 300PX;
+            height: 200px;
+            background-color: grey;
+            /* transform: perspective(200px) translate3d(100px,50px,25px); */
+            /* transform: perspective(200px) rotate3d(3,4,5,80deg); */
+            transform: perspective(200px) scale3d(2,2,4) rotateZ(30deg) rotateZ(30deg);
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div id="box">
+            <p>Hi, How are you</p>
+        </div>
+    </div>
+</body>
+</html>
