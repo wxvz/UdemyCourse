@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Queries</title>
+    <style>
+        .bob {
+            width: 900px;
+            height: 300px;
+            background-color: violet;
+        }
+        @media screen and (max-width:850px) {
+            .para {
+                width: 100%;
+                background-color: yellow;
+            }
+        }
+        @media screen and (max-width:650px){
+            .pic img {
+                width: 100%;
+            }
+        }
+        @media screen and (max-width:600px){
+            .block h1 {
+                background-color: yellowgreen;
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="para">
+        <p>
+            This is a test, This is a test, This is a test, This is a test, This is a test,
+            This is a test, This is a test, This is a test, This is a test, This is a test,
+            This is a test, This is a test, This is a test, This is a test.
+        </p>
+        <div class="pic">
+            <img src="#" alt="do place image here">
+        </div>
+        <div class="block">
+            <h1>Hello, Guest!</h1>
+        </div>
+    </div>
+</body>
+</html>
