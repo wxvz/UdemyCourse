@@ -14,5 +14,6 @@
     echo strpos($str, "PHP") . "<br>"; // Position of the first occurrence
     echo str_replace("PHP", "Python", $str) . "<br>"; // Replace PHP with Python
     ?> 
+    <p>These are some of the built-in string methods in PHP that help in manipulating and analyzing strings.</p>
 </body>
 </html>
