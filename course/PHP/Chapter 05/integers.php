@@ -32,5 +32,9 @@
     echo var_dump(is_float($e)) . "float? <br>"; // Checks if $e is a float
     echo "<br>";
     ?>
+    <p>Integers in PHP can be represented in various formats: decimal, hexadecimal, octal, and binary. They can also be checked using the is_int() function.</p>
+    <p>Note: The float value is not an integer, but it is included for comparison purposes.</p>
+    <p>PHP supports integers in various formats, including decimal, hexadecimal, octal, and binary. You can also use scientific notation for large numbers.</p>
+    <p>Integers can be checked using the is_int() function, and you can also check if a value is a float using the is_float() function.</p>
 </body>
 </html>
