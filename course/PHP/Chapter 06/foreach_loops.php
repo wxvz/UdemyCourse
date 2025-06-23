@@ -12,7 +12,8 @@
     echo "<h2>Fruits List:</h2>";
     foreach ($fruits as $fruit) {
         echo "<p>$fruit</p>";
-    }
+    }    
+    
     $students = [
         ["name" => "Alice", "age" => 20, "grade" => "A"],
         ["name" => "Bob", "age" => 22, "grade" => "B"],
