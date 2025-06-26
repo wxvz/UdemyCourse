@@ -14,6 +14,8 @@
         <input type="submit" name="sub" value="Submit">
     </form>
     <?php
+    // Problem 2: Writing a PHP Script to find the length of a string
+    // and display the string along with its length
     if (isset($_GET['sub'])) {
         $st = $_GET['str'];
         echo "Your string is : " . "\"$st\"" . "<br>";

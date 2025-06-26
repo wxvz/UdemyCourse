@@ -17,6 +17,8 @@
     </form>
 
     <?php
+    // Problem 3: Writing a PHP Script to replace a word in a string and count the number of replacements
+    // and also count the number of words in the string
     if (isset($_GET['sub'])) {
         $main_str = $_GET['main_str'];
         $find = $_GET['find'];
