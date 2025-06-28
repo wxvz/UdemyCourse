@@ -12,8 +12,7 @@
     $username = "root";
     $password = "";
     $dbname = "school";
-    $name = "Frank";
-    $id = 1;
+    
     // Create connection
      $conn = new mysqli($servername, $username, $password, $dbname);
     // Check connection
