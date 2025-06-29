@@ -58,7 +58,7 @@
     $result = $conn->query($count_query);
     if ($result)    
     {
-        $row = $result -> fetch asspc();
+        $row = $result->fetch_assoc();
         echo "Total number of new_students: " . $row['total_new_students'] . "<br>";
     }
     else 
