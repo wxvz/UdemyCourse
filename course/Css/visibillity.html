@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visibility in css</title>
+    <style>
+       
+        .d1 {
+            width: 300px;
+            height: 200px;
+            background-color: bisque;
+            float: left;
+            margin-left: 10px;
+        } 
+       .d2 {
+            width: 300px;
+            height: 200px;
+            background-color: yellow;
+            float: left;
+            margin-left: 10px;
+            visibility: visible;
+            /* display: none; */
+        }
+        .d3 {
+            width: 300px;
+            height: 200px;
+            background-color: greenyellow;
+            float: left;
+            margin-left: 10px;
+        }
+        #h {
+            visibility: hidden;
+        }
+        #h h1 {
+            visibility: inherit;    
+        }
+    </style>
+</head>
+<body>
+    <div id="h">
+        <h1>Hola</h1>
+    </div>
+    <div>
+        <div class="d1"></div>
+        <div class="d2"></div>
+        <div class="d3"></div>
+
+    </div>
+</body>
+</html>
