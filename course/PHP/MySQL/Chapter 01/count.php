@@ -54,7 +54,7 @@
         echo "Error inserting data: " . $conn->error . "<br>";
     }
     // Count the number of new_students in the table
-    $count_query = "SELECT COUNT(*) AS total_new_students FROM new_students";
+    $count_query = "SELECT DISTINCT COUNT(*) AS total_new_students FROM new_students";
     $result = $conn->query($count_query);
     if ($result)    
     {
