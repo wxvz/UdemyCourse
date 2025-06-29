@@ -43,7 +43,7 @@
     ('John Peterson', 20),
     ('Jane Demerson', 26),     
     ('Johan Berlison', 19), 
-    ('BobBY Moore', 21), 
+    ('BobbY Moore', 21), 
     ('Charles White', 18";
     if ($conn->query($insert_query) === TRUE)
     {
