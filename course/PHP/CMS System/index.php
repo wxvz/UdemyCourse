@@ -151,12 +151,12 @@ h1.heading {
 
               
               <li class="nav-item">
-                <a class="nav-link" href="">Logout</a>
+                <a class="nav-link" href="logout.php">Logout</a>
               </li>
           
             
               <li class="nav-item">
-                <a class="nav-link" href="">Dashboard</a>
+                <a class="nav-link" href="Dashboard/dashboard.php">Dashboard</a>
               </li>
 
                 <li class="nav-item">
@@ -229,7 +229,7 @@ h1.heading {
             <i class="fas fa-gem me-3"></i>JafriCode.com
           </h6>
           <p>
-            JafriCode is the educational Platform, you can learn HTML, CSS, Python, JAVA, PHP etc
+            FranCode is the educational Platform, you can learn HTML, CSS, Python, JAVA, PHP etc
           </p>
         </div>
         <!-- Grid column -->
@@ -280,13 +280,13 @@ h1.heading {
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           <!-- Links -->
           <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-          <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
+          <p><i class="fas fa-home me-3"></i> Athlone, N38 HH28, IE</p>
           <p>
             <i class="fas fa-envelope me-3"></i>
             info@example.com
           </p>
-          <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-          <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+          <p><i class="fas fa-phone me-3"></i> + 353 87 8372</p>
+          <p><i class="fas fa-print me-3"></i> + 353 81 2122</p>
         </div>
         <!-- Grid column -->
       </div>
@@ -297,6 +297,6 @@ h1.heading {
 </footer>
 <!-- Footer -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-  </body>
+  </body> 
 </html>
 
