@@ -226,7 +226,7 @@ h1.heading {
         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
           <!-- Content -->
           <h6 class="text-uppercase fw-bold mb-4">
-            <i class="fas fa-gem me-3"></i>JafriCode.com
+            <i class="fas fa-gem me-3"></i>FranCode.com
           </h6>
           <p>
             FranCode is the educational Platform, you can learn HTML, CSS, Python, JAVA, PHP etc
