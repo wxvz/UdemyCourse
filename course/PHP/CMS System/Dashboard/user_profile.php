@@ -109,9 +109,9 @@ if ($conn->connect_error) {
         <div class="row">
             <?php
             $id = $_SESSION['u_id'];
-            $user_q = "SELECT * FROM all_users WHERE c_id = '$id'";
+            $user_q = "SELECT * FROM all_users WHERE u_id = '$id'";
             $result = mysqli_query($conn, $user_q);
-            $row = mysqli_fetch_assoc($row);
+            $row = mysqli_fetch_assoc($result);
 
             ?>
             <div class="col-md-3 border-right">
@@ -133,7 +133,7 @@ if ($conn->connect_error) {
             </div>
             <div class="col-md-4">
                 <div class="p-3 py-5">
-                <p>Bio : <?php echo $row['ubio']?> </p>
+                <p>Bio : <?php echo $row['u_bio']?> </p>
                 </div>
             </div>
         </div>

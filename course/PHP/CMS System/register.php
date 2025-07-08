@@ -44,37 +44,37 @@ if ($conn->connect_error) {
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" name="u_name" value="" class="form-control" >
+                            <input type="text" name="u_name" value="" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" name="u_email" value="" class="form-control" >
+                            <input type="email" name="u_email" value="" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" name="u_pwd" value="" class="form-control" >
+                            <input type="password" name="u_pwd" value="" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Picture</label>
-                            <input type="file" name="u_pic" class="form-control">
+                            <input type="file" name="u_pic" class="form-control" >
                         </div>
 
                         <div class="form-group">
                             <label>DOB</label>
-                            <input type="date" name="u_dob" class="form-control">
+                            <input type="date" name="u_dob" class="form-control" required>
                         </div>
 
                         <div class="form-group">
                             <label>Country</label>
-                            <input type="text" name="u_country" value="" class="form-control" >
+                            <input type="text" name="u_country" value="" class="form-control" required >
                         </div>
                         <div class="form-group">
                             <label>City</label>
-                            <input type="text" name="u_city" value="" class="form-control" >
+                            <input type="text" name="u_city" value="" class="form-control" required >
                         </div>
                         <div class="form-group">
                             <label>Website</label>
-                            <input type="url" name="u_site" value="" class="form-control" >
+                            <input type="url" name="u_site" value="" class="form-control" required>
                         </div>
                         <label>Bio</label>
                         <div class="form-group">
@@ -104,22 +104,21 @@ if ($conn->connect_error) {
       
                 if($u_name == '' || $u_email == '' || $u_pass == '' || $u_dob == '' || $u_country == '' || $u_city == '' || $u_site == '' || $u_bio == '' || $u_pic == ''){
                     echo "<script>alert('Please fill all the fields')</script>";
-                    exit();
                 }
                 else if($u_pic_size > 2000000)
                 {
                     echo "<script>alert('Image size should be less than 2MB')</script>";
-                    exit();
                     } else {
                     move_uploaded_file($u_pic_tmp, "img/$u_pic");
-                    $insert_user = "INSERT INTO all_users (u_name, u_email, u_pwd, u_dob, u_country, u_city, u_site, u_bio, u_pic) VALUES ('$u_name', '$u_email', '$u_pass', '$u_dob', '$u_country', '$u_city', '$u_site', '$u_bio', '$u_pic')";
-                    $run_user = mysqli_query($conn, $insert_user);
+                    $stmt = $conn->prepare("INSERT INTO all_users (u_name, u_email, u_pwd, u_dob, u_country, u_city, u_site, u_bio, u_pic) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    $stmt->bind_param("sssssssss", $u_name, $u_email, $u_pass, $u_dob, $u_country, $u_city, $u_site, $u_bio, $u_pic);
+                    $stmt->execute();
 
-                    if($run_user){
+                    if($stmt->affected_rows > 0){
                         echo "<script>alert('User registered successfully!')</script>";
                         echo "<script>window.open('login.php','_self')</script>";
                     } 
-                    else if(!$run_user) 
+                    else if(!$stmt->execute()) 
                     {
                         echo "<script>alert('Error in registration!')</script>";
                     }

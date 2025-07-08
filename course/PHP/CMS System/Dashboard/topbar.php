@@ -1,3 +1,16 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "cms";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
     <!-- Sidebar Toggle (Topbar) -->
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -48,7 +61,13 @@
         
             
         </li>
+        <?php
+            $id = $_SESSION['u_id'];
+            $user_q = "SELECT * FROM all_users WHERE u_id = '$id'";
+            $result = mysqli_query($conn, $user_q);
+            $row = mysqli_fetch_assoc($result);
 
+        ?>
         
         <!-- Nav Item - User Information -->
 
@@ -56,9 +75,14 @@
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> Username</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $row['u_name']; ?></span>
                 <img class="img-profile rounded-circle"
-                    src="#">
+                     <?php if(empty($row['u_pic'])): ?>
+                        src="../img/default.png">
+                        <?php else: ?>
+                        src="../img/<?php echo $row['u_pic']; ?>">
+                <?php endif; ?>
+                
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
