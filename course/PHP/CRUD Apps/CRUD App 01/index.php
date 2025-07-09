@@ -98,7 +98,7 @@ if ($conn->connect_error) {
 
 						<td>
 							<a href="edit.php?edit=<?php echo $id; ?>" class="edit" data-toggle=""><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="<?php echo $id; ?>" class="delete" data-toggle=""><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							<a href="del.php?del=<?php echo $id; ?>" class="delete" data-toggle=""><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>
                         

@@ -1,5 +1,4 @@
 <?php
-session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -148,7 +147,7 @@ if ($conn->connect_error) {
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; FranCode.com 2022-23</span>
+                    <span>Copyright &copy; FranCodeExample.com 2022-23</span>
                     </div>
                 </div>
             </footer>

@@ -86,16 +86,14 @@ if ($conn->connect_error) {
                     if($result && mysqli_num_rows($result) == 1) {
                         $row = mysqli_fetch_assoc($result);
                         if(password_verify($u_pass, $row['u_pwd'])) {
-                            $_SESSION['u_id'] = $row['u_id'];
-                            echo "<script>alert('Login successful!')</script>";
-                            echo "<script>window.open('index.php','_self')</script>";
+                          $_SESSION['u_id'] = $row['u_id'];
+                          echo "<script>alert('Login successful!')</script>";
+                          echo "<script>window.open('index.php','_self')</script>";
+                        } else {
+                        echo "<script>alert('Invalid email or password!')</script>";
                         }
-                        else {
-                            echo "<script>alert('Invalid email or password!')</script>";
-                        }
-                    }
-                    else {
-                        echo "<script>alert('User not found!')</script>";
+                      } else {
+                      echo "<script>alert('User not found!')</script>";
                     }
                 }
                 ?>

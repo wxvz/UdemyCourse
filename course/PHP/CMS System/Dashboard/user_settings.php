@@ -45,6 +45,7 @@ if ($conn->connect_error) {
     </style>
 </head>
 
+
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -61,13 +62,19 @@ if ($conn->connect_error) {
             <div id="content">
 
                 <!-- Navbar -->
-                <?php include 'navbar.php';?>
+                <?php include 'topbar.php';?>
                 <!-- End of Navbar -->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
         <div class="row register">
             <div class="col-12">
+                <?php
+                $id = $_SESSION['u_id']; 
+                $user_q = "SELECT * FROM all_users WHERE u_id = '$id'";
+                $result = mysqli_query($conn, $user_q);
+                $row = mysqli_fetch_assoc($result);
+                ?>
           
                 <form method="post" action="" enctype="multipart/form-data">
                     <div class="modal-header">
@@ -76,11 +83,11 @@ if ($conn->connect_error) {
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" name="u_name" value="" class="form-control" >
+                            <input type="text" name="u_name" value="<?php echo $row['u_name'];?>" class="form-control" >
                         </div> 
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" name="u_email" value="" class="form-control" >
+                            <input type="email" name="u_email" value="<?php echo $row['u_email'];?>" class="form-control" >
                         </div>
                         <div class="form-group">
                             <label>Password</label>
@@ -89,72 +96,98 @@ if ($conn->connect_error) {
                         <div class="form-group">
                             <label>Picture</label>
                             <input type="file" name="u_pic" class="form-control">
-                            <img src="" alt="" width="80" height="80">
+                            <img src="img/<?php echo $row['u_pic'];?>" alt="" width="80" height="80">
                         </div>
 
                         <div class="form-group">
                             <label>DOB</label>
-                            <input type="date" name="u_dob" value="" class="form-control">
+                            <input type="date" name="u_dob" value="<?php echo $row['u_dob'];?>" class="form-control">
                         </div>
 
                         <div class="form-group">
                             <label>Country</label>
-                            <input type="text" name="u_country" value="" class="form-control" >
+                            <input type="text" name="u_country" value="<?php echo $row['u_country'];?>" class="form-control" >
                         </div>
                         <div class="form-group">
                             <label>City</label>
-                            <input type="text" name="u_city" value="" class="form-control" >
+                            <input type="text" name="u_city" value="<?php echo $row['u_city'];?>" class="form-control" >
                         </div>
                         <div class="form-group">
                             <label>Website</label>
-                            <input type="url" name="u_site" value="" class="form-control" >
+                            <input type="url" name="u_site" value="<?php echo $row['u_site'];?>" class="form-control" >
                         </div>
                         <label>Bio</label>
                         <div class="form-group">
-                            <textarea name="u_bio" id="" cols="64" rows="10" class="form-control"></textarea>
+                            <textarea name="u_bio" id="" cols="64" rows="10" class="form-control">
+                                <?php echo $row['u_bio'];?>
+                            </textarea>
                         </div>
                       
                     </div>
                     <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel" onclick="window.location.href='user_profile.php';">
                         <input type="submit" name="update" class="btn btn-success" value="Update">
                     </div>
                 </form>  
             </div>
             <?php
-            
+            if(isset($_POST['update'])) {
+                $id = $_SESSION['u_id'];
+                $name = $_POST['u_name'];
+                $email = $_POST['u_email'];
+                $dob = $_POST['u_dob'];
+                $country = $_POST['u_country'];
+                $city = $_POST['u_city'];
+                $site = $_POST['u_site'];
+                $bioTrim = trim($_POST['u_bio']);
+                $bio = htmlspecialchars($bioTrim, ENT_QUOTES, 'UTF-8');
 
-
-            if (isset($_FILES['u_pic']) && $_FILES['u_pic']['error'] == 0 ) {
-                $u_pic = $_FILES['u_pic']['name'];
-                $u_pic_tmp = $_FILES['u_pic']['tmp_name'];
-                $u_pic_size = $_FILES['u_pic']['size'];
-                $u_pic_type = $_FILES['u_pic']['type'];
-                
-                // Validate file type
-                $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
-                if (!in_array($u_pic_type, $allowed_types)) {
-                    echo "<script>alert('Only JPEG, PNG, and GIF files are allowed')</script>";
-                    exit();
-                }
-                
-                if($u_pic_size > 2000000) {
-                    echo "<script>alert('Image size should be less than 2MB')</script>";
-                    exit();
+                if (!empty($_POST['u_pwd'])) {
+                    $pwd = password_hash($_POST['u_pwd'], PASSWORD_DEFAULT);
                 } else {
-                    // Create unique filename to avoid conflicts
-                    $u_pic = time() . '_' . $u_pic;
-                    move_uploaded_file($u_pic_tmp, "img/$u_pic");
+                    $pwd = $row['u_pwd']; 
                 }
-
-                if(!empty($_FILES['u_img']['name'])){
-                    $img = $_FILES['u_img']['name'];
-                    $tmp_img = $_FILES['c_img']['tmp_name'];
-                    move_uploaded_file($tmp_img, "img/$u_pic");
-                    $update_query = "UPDATE customer_info SET c_name='$name', c_email='$email', c_password='$pwd', c_city='$city', c_order='$order', c_country='$country', c_img='$img' WHERE c_id='$id'";
-        } else {
-            $update_query = "UPDATE customer_info SET c_name='$name', c_email='$email', c_password='$pwd', c_city='$city', c_order='$order', c_country='$country' WHERE c_id='$id'";
-        }
+                
+                // Check if any field is empty
+                if (isset($_FILES['u_pic']) && $_FILES['u_pic']['error'] == 0 ) {
+                    $u_pic = $_FILES['u_pic']['name'];
+                    $u_pic_tmp = $_FILES['u_pic']['tmp_name'];
+                    $u_pic_size = $_FILES['u_pic']['size'];
+                    $u_pic_type = $_FILES['u_pic']['type'];
+                    
+                    // Validate file type
+                    $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
+                    if (!in_array($u_pic_type, $allowed_types)) {
+                        echo "<script>alert('Only JPEG, PNG, and GIF files are allowed')</script>";
+                        exit;
+                    }
+                    
+                    if($u_pic_size > 2000000) {
+                        echo "<script>alert('Image size should be less than 2MB')</script>";      
+                        exit;  
+                    } else {
+                        // Create unique filename to avoid conflicts
+                        $u_pic = time() . '_' . $u_pic;
+                        move_uploaded_file($u_pic_tmp, "../profileImg/$u_pic");
+                    }
+                } 
+                else {
+                    $u_pic = $row['u_pic']; // Keep the old picture if no new one is uploaded
+                }
+                if ($pwd == '') {
+                    $pwd = $row['u_pwd'];
+                }
+                    
+                $update_query = "UPDATE all_users SET u_name='$name', u_email='$email', u_pwd='$pwd', u_dob='$dob', u_country='$country', u_city='$city', u_site='$site', u_bio='$bio', u_pic='$u_pic' WHERE u_id='$id'";
+                $update_result = mysqli_query($conn, $update_query);
+                if($update_result) {
+                    echo "<script>alert('User Profile updated successfully!')</script>";
+                    echo "<script>window.open('user_profile.php','_self')</script>";
+                } else {
+                    echo "<script>alert('Error updating profile!')</script>";
+                }
+                    
+               
             }
 
             
@@ -170,7 +203,7 @@ if ($conn->connect_error) {
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; JafriCode.com 2022-23</span>
+                    <span>Copyright &copy; FranCodeExample.com 2025</span>
                     </div>
                 </div>
             </footer>

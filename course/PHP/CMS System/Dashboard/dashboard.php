@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['u_id'])) {
+    echo "<script>window.open('../login.php','_self')</script>";
+    exit();
+} 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

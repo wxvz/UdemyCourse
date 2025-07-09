@@ -56,7 +56,7 @@ if ($conn->connect_error) {
                         </div>
                         <div class="form-group">
                             <label>Picture</label>
-                            <input type="file" name="u_pic" class="form-control" >
+                            <input type="file" name="u_pic" class="form-control" required>
                         </div>
 
                         <div class="form-group">
@@ -82,7 +82,7 @@ if ($conn->connect_error) {
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel" onclick="window.location.href='index.php';">
                         <input type="submit" name="register" class="btn btn-success" value="Register">
                     </div>
                 </form>  
@@ -109,7 +109,7 @@ if ($conn->connect_error) {
                 {
                     echo "<script>alert('Image size should be less than 2MB')</script>";
                     } else {
-                    move_uploaded_file($u_pic_tmp, "img/$u_pic");
+                    move_uploaded_file($u_pic_tmp, "profileImg/$u_pic");
                     $stmt = $conn->prepare("INSERT INTO all_users (u_name, u_email, u_pwd, u_dob, u_country, u_city, u_site, u_bio, u_pic) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
                     $stmt->bind_param("sssssssss", $u_name, $u_email, $u_pass, $u_dob, $u_country, $u_city, $u_site, $u_bio, $u_pic);
                     $stmt->execute();

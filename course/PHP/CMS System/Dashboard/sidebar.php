@@ -10,12 +10,12 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
     <li class="nav-item">
-        <a class="nav-link" href="../index.php">
+        <a class="nav-link" href="CMS/index.php">
             <i class="fas fa-fw fa-user"></i>
             <span>Home Page</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="/Dashboard/all_users.php">
             <i class="fas fa-fw fa-user"></i>
             <span>All Users</span></a> 
     </li>
