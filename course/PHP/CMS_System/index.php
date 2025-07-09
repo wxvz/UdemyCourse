@@ -180,7 +180,12 @@ h1.heading {
             <div class="content">
                 <div class="container">
                     <div class="row">
-                       
+                       <?php 
+                       $q = "select * from all_posts";
+                       $result = mysqli_query($conn, $q);
+                       while($row = mysqli_fetch_assoc($result)) {
+
+                       ?>
                         <div class="col-xs-12 col-sm-4">
                             <div class="card">
                                 <a class="img-card" href="#">
@@ -188,7 +193,7 @@ h1.heading {
                               </a>
                                 <div class="card-content">
                                     <h4 class="card-title">
-                                        <a href="#">Title
+                                        <a href="#"><?php echo $row['p_title']; ?>
                                       </a>
                                     </h4>
                                     <p class="">
@@ -205,7 +210,7 @@ h1.heading {
                                 </div>
                             </div>
                         </div>
-                   
+                        <?php } ?>
 
                     </div>
                 </div>

@@ -10,12 +10,12 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
     <li class="nav-item">
-        <a class="nav-link" href="CMS/index.php">
+        <a class="nav-link" href="../index.php">
             <i class="fas fa-fw fa-user"></i>
             <span>Home Page</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/Dashboard/all_users.php">
+        <a class="nav-link" href="all_users.php">
             <i class="fas fa-fw fa-user"></i>
             <span>All Users</span></a> 
     </li>
@@ -23,17 +23,17 @@
     <li class="nav-item">
         <a class="nav-link" href="#">
             <i class="fas fa-fw fa-id-card"></i>
-            <span>All Posting</span></a>
+            <span>All Posts</span></a>
     </li>
 
 
     <li class="nav-item">
         <a class="nav-link" href="#">
             <i class="fas fa-fw fa-user"></i>
-            <span>Your Posting</span></a>
+            <span>Your Posts</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="create_post.php">
             <i class="fas fa-fw fa-user"></i>
             <span>Create Post</span></a>
     </li>

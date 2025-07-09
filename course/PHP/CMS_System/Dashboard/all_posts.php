@@ -1,16 +1,3 @@
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cms";
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +9,7 @@ if ($conn->connect_error) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>All Users</title>
+    <title>All Posts</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -54,19 +41,42 @@ if ($conn->connect_error) {
             <div id="content">
 
                 <!-- Topbar -->
-                <?php include 'topbar.php';?>   
-                <!-- End of Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <form class="form-inline">
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                    </form>
+
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Topbar Navbar -->
+                    <?php include 'topbar.php';?>
+                    <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    
                     <div class="row">
                         <div class="col-9">
-                        <h1 class="h3 mb-2 text-gray-800">All Users Record</h1>
+                        <h1 class="h3 mb-2 text-gray-800">All Posts Record</h1>
 
                         </div>
                         <div class="col-3">
-                            <a href="../register.php" role="button" class="btn btn-primary">Add User</a>
+                            <a href="#" role="button" class="btn btn-primary">Create Post</a>
                         </div>
                     </div>
                     <!-- Page Heading -->
@@ -77,48 +87,35 @@ if ($conn->connect_error) {
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
-                                        
                                         <tr>
-                                            
-                                            <th>Name</th>
-                                            <th>Email</th>
+                                            <th>Title</th>
+                                            <th>Description</th>
                                             <th>Picture</th>
-                                            <th>Country</th>
-                                            <th>City</th>
-                                            <th>Website</th>
-                                            <th>Bio</th>
+                                            <th>Content</th>
+                                            <th>Creater</th>
                                             <th>Action</th>
 
                                         </tr>
                                     </thead>
-                                        
+
                                     <tbody>
-                                        <?php 
-                    
-                                        $all_users_sql = "SELECT * FROM all_users";
-                                        $all_users_result = $conn->query($all_users_sql);
-                                        while ($row = $all_users_result->fetch_assoc()) {
-                                            $id = $row['u_id'];
+                                            <td>Value</td>
+                                            <td>Value</td>
+                                            <td>Value</td>
+                                            <td>Value</td>
+                                            <td>Value</td>
+
                                         
-                                        ?>
-                                        <tr>
-                                            <td><?php echo $row['u_name'];?></td>
-                                            <td><?php echo $row['u_email'];?></td>
-                                            <td>
-                                                <img src="../profileImg/<?php echo $row['u_pic'];?>" alt="" width="80" height="80">
-                                            </td>
-                                            <td><?php echo $row['u_country'];?></td>
-                                            <td><?php echo $row['u_city'];?></td>
-                                            <td><?php echo $row['u_site'];?></td>
-                                            <td><?php echo $row['u_bio'];?></td>
-                                            <td>
-                                                <a href="admin_edit.php?edit=<?php echo $id; ?>" class="edit" title="Edit" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>
-                                                <a href="admin_del.php?del=<?php echo $id; ?>" class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
-                                            </td>
+                        <td> 
+                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-fw fa-eye"></i></a>
+                            <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>
+                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
+                        </td>
+
+
                                         </tr>
-                                        <?php } ?>
+
                                     </tbody>
-                                    
                                 </table>
                             </div>
                         </div>
@@ -134,7 +131,7 @@ if ($conn->connect_error) {
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; JafriCode.com 2022-23</span>
+                    <span>Copyright &copy; FranCodeExample.com 202</span>
                     </div>
                 </div>
             </footer>
@@ -151,7 +148,7 @@ if ($conn->connect_error) {
         <i class="fas fa-angle-up"></i>
     </a>
 
-    
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -173,4 +170,3 @@ if ($conn->connect_error) {
 </body>
 
 </html>
-
