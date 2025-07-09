@@ -22,16 +22,16 @@ if ($conn->connect_error) {
     <title>Admin Edit User</title>
 
     <!-- Custom fonts for this template -->
-    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <style>
          .register{
             margin: auto;
@@ -47,7 +47,7 @@ if ($conn->connect_error) {
     <div id="wrapper">
 
         <!-- Sidebar -->
-         <?php include '../sidebar.php';?>
+         <?php include 'sidebar.php';?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -57,7 +57,7 @@ if ($conn->connect_error) {
             <div id="content">
 
                 <!-- Topbar -->
-                <?php include '../topbar.php';?>
+                <?php include 'topbar.php';?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -134,7 +134,7 @@ if ($conn->connect_error) {
                                     </label>
                                 </div>
                                 <div class="modal-footer">
-                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel" onclick="window.location.href='../all_users.php'">
+                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel" onclick="window.location.href='all_users.php'">
                                     <input type="submit" name="update" class="btn btn-success" value="Update">
                                 </div>
                             </form>  
@@ -164,7 +164,7 @@ if ($conn->connect_error) {
                                 $update_user_sql = "UPDATE all_users SET u_name='$u_name', u_email='$u_email', u_pwd='$u_pwd', u_dob='$u_dob', u_country='$u_country', u_city='$u_city', u_site='$u_site', u_bio='$u_bio', u_pic='$pic_name', u_is_admin='$u_is_admin' WHERE u_id='$id'";
                                 
                                 if ($conn->query($update_user_sql) === TRUE) {
-                                    echo "<script>alert('User updated successfully'); window.location.href='../all_users.php';</script>";
+                                    echo "<script>alert('User updated successfully'); window.location.href='all_users.php';</script>";
                                 } else {
                                     echo "Error: " . $update_user_sql . "<br>" . $conn->error;
                                 }
@@ -201,21 +201,21 @@ if ($conn->connect_error) {
 
 
     <!-- Bootstrap core JavaScript-->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
+    <script src="js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="../js/demo/datatables-demo.js"></script>
+    <script src="js/demo/datatables-demo.js"></script>
 
 </body>
 
