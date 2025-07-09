@@ -1,3 +1,13 @@
+<?php
+$servername = "localhost";
+$username = "root"; 
+$password = "";
+$dbname = "cms";
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}   
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +19,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>All Posts</title>
+    <title>Your All Posting</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -31,8 +41,8 @@
     <div id="wrapper">
 
          <!-- Sidebar -->
-        <?php include 'sidebar.php';?>
-        <!-- End of Sidebar -->
+         <?php include 'sidebar.php';?>
+<!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -40,19 +50,19 @@
             <!-- Main Content -->
             <div id="content">
 
-                    <!-- Topbar -->
-                    <?php include 'topbar.php';?>
-                    <!-- End of Topbar -->
+                <!-- Topbar -->
+                <?php include 'topbar.php';?>
+                <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-9">
-                        <h1 class="h3 mb-2 text-gray-800">All Posts Record</h1>
+                        <h1 class="h3 mb-2 text-gray-800">Your Posts</h1>
 
                         </div>
                         <div class="col-3">
-                            <a href="#" role="button" class="btn btn-primary">Create Post</a>
+                            <a href="create_post.php" role="button" class="btn btn-primary">Create Post</a>
                         </div>
                     </div>
                     <!-- Page Heading -->
@@ -68,38 +78,52 @@
                                             <th>Description</th>
                                             <th>Picture</th>
                                             <th>Content</th>
-                                            <th>Creater</th>
                                             <th>Action</th>
 
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                            <td>Value</td>
-                                            <td>Value</td>
-                                            <td>Value</td>
-                                            <td>Value</td>
-                                            <td>Value</td>
+                                        <tr>
+                                        <?php
+                                        $q = "SELECT * FROM all_posts";
+                                        $result = mysqli_query($conn, $q);
+                                        while($row = mysqli_fetch_assoc($result)) {
+                                        $p_id = $row['p_id'];
+                                        $p_title = $row['p_title'];
+                                        $p_description = $row['p_description'];
+                                        $p_pic = $row['p_pic'];
+                                        $p_content = $row['p_content'];
+                                        $p_user = $row['p_user'];
 
-                                        
-                        <td> 
-                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-fw fa-eye"></i></a>
-                            <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>
-                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
-                        </td>
+                                        ?>
+
+                                        <td><?php echo $p_title; ?></td>
+                                        <td><?php echo substr($p_description, 0, 20); ?></td>
+                                        <td>
+                                                <img src="../postImages/<?php echo $p_pic; ?>" width="50" height="50" alt="">
+                                        </td>
+                                        <td>
+                                            <?php echo substr($p_content, 0, 20); ?>
+                                        </td>
+                                        <td> 
+                                            <a href="blog_post_page.php?post_id=<?php echo $p_id;?>" class="" title="" data-toggle="tooltip"><i class="fas fa-fw fa-eye"></i></a>
+                                            <a href="edit_post.php?edit_id=<?php echo $p_id;?>" class="edit" title="Edit" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>
+                                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
+                                        </td>
 
 
                                         </tr>
-
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-
+                
                 </div>
                 <!-- /.container-fluid -->
-
+                
             </div>
             <!-- End of Main Content -->
 
@@ -107,7 +131,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; FranCodeExample.com 202</span>
+                    <span>Copyright &copy; FranCodeExample.com 2025</span>
                     </div>
                 </div>
             </footer>
@@ -124,7 +148,7 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-
+   
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

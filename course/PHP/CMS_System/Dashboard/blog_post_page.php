@@ -1,23 +1,19 @@
 <?php
 $servername = "localhost";
-$username = "root";
+$username = "root"; 
 $password = "";
 $dbname = "cms";
-
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
-}
+}   
 ?>
-
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CMS System</title>
+    <title>Blog Single Post</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <style>
     @import url(https://fonts.googleapis.com/css?family=Roboto:400,100,900);
@@ -123,9 +119,9 @@ h1.heading {
 </style>  
 </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="">CMS</a>
+          <a class="navbar-brand" href="#">CMS</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -140,7 +136,7 @@ h1.heading {
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="">Home</a>
+                <a class="nav-link active" aria-current="page" href="../index.php">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">About us</a>
@@ -148,17 +144,16 @@ h1.heading {
               <li class="nav-item">
                 <a class="nav-link" href="#">Contact us</a>
               </li>
-
+           
               
               <li class="nav-item">
                 <a class="nav-link" href="logout.php">Logout</a>
               </li>
           
-            
               <li class="nav-item">
-                <a class="nav-link" href="Dashboard/dashboard.php">Dashboard</a>
+                <a class="nav-link" href="dashboard.php">Dashboard</a>
               </li>
-
+           
                 <li class="nav-item">
                 <a class="nav-link" href="register.php">Register</a>
                 </li>
@@ -166,60 +161,59 @@ h1.heading {
                 <li class="nav-item">
                 <a class="nav-link" href="login.php">Login</a>
                 </li>
+              
+
             </ul>
           </div>
         </div>
       </nav>
-    <section class="wrapper">
-        <div class="container-fostrap">
-            <div>
-                <h1 class="heading">
-                    Blog Posts 
-                </h1>
-            </div>
-            <div class="content">
-                <div class="container">
-                    <div class="row">
-                       <?php 
-                       $q = "select * from all_posts";
-                       $result = mysqli_query($conn, $q);
-                       while($row = mysqli_fetch_assoc($result)) {
-                        $p_user = $row['p_user'];
-                        $user = "select * from all_users where u_id = $p_user";
-                        $user_result = mysqli_query($conn, $user);
-                        $user_row = mysqli_fetch_assoc($user_result);
-                       ?>
-                        <div class="col-xs-12 col-sm-4">
-                            <div class="card">
-                                <a class="img-card" href="#">
-                                <img src="postImages/<?php echo $row['p_pic']; ?>" />
-                              </a>
-                                <div class="card-content">
-                                    <h4 class="card-title">
-                                        <a href="#"><?php echo substr($row['p_title'],0 , 15); ?>
-                                      </a>
-                                    </h4>
-                                    <p class="">
-                                            <?php echo substr($row['p_description'], 0, 20) ; ?>
-                                        </p>
-                                     <p class=""> Posted By: 
-                                       <b><?php echo $user_row['u_name']; ?></b>
-                                    </p>
-                                </div>
-                                <div class="card-read-more">
-                                    <a href="Dashboard/blog_post_page.php?post_id=<?php echo $row['p_id']; ?>" class="btn btn-link btn-block">
-                                        Read More
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <?php } ?>
+   
+      <div class="container">
+      
+        <?php
+        if(isset($_GET['post_id'])) {
+            $post_id = $_GET['post_id'];
+            $query = "SELECT * FROM all_posts WHERE p_id='$post_id'";
+            $result = mysqli_query($conn, $query);
+            if($result && mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_assoc($result);
+                $p_id = $row['p_id'];
+                $p_title = $row['p_title'];
+                $p_content = $row['p_content'];
+                $p_description = $row['p_description'];
+                $p_image = $row['p_pic'];
+                $p_date = $row['p_date'];
+                $p_user = $row['p_user'];
+              }  else {
+                echo "<h2>Post not found!</h2>";
+                exit;
+              }
+        } else {
+            echo "<h2>Post not available!</h2>";
+            exit;
+        }  
+        $user_query = "SELECT * FROM all_users WHERE u_id='$p_user'";
+        $user_result = mysqli_query($conn, $user_query);
+        if($user_result && mysqli_num_rows($user_result) > 0) {
+            $user_row = mysqli_fetch_assoc($user_result);
+            $p_user_name = $user_row['u_name'];
+        } else {
+            $p_user_name = "Unknown User";
+        }
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        ?>
+        <h1><?php echo $p_title;?></h1>
+        <p>Published by: <b><?php echo $p_user_name;?></b> on <b><?php echo $p_date;?></b></p>
+        <h4>Post Description</h4>
+        <p>
+        <?php echo $p_description; ?>
+        </p>
+        <img src="../postImages/<?php echo $p_image;?>" width="500" height="400" alt="">
+        <p>
+        <?php echo $p_content;?>
+        </p>
+      </div>
+
     <!-- Footer -->
 <footer class="text-center text-lg-start bg-light text-muted">
 
@@ -234,7 +228,7 @@ h1.heading {
         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
           <!-- Content -->
           <h6 class="text-uppercase fw-bold mb-4">
-            <i class="fas fa-gem me-3"></i>FranCode.com
+          <i class="fas fa-gem me-3"></i>JafriCode.com
           </h6>
           <p>
             FranCode is the educational Platform, you can learn HTML, CSS, Python, JAVA, PHP etc
@@ -305,6 +299,5 @@ h1.heading {
 </footer>
 <!-- Footer -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-  </body> 
+  </body>
 </html>
-

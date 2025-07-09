@@ -21,14 +21,14 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="all_posts.php">
             <i class="fas fa-fw fa-id-card"></i>
             <span>All Posts</span></a>
     </li>
 
 
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="your_posts.php">
             <i class="fas fa-fw fa-user"></i>
             <span>Your Posts</span></a>
     </li>
