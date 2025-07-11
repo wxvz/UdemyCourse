@@ -62,6 +62,5 @@
         echo "Error inserting sample data: " . mysqli_error($conn) . "<br>";
     }
     ?>
-    
 </body>
 </html>

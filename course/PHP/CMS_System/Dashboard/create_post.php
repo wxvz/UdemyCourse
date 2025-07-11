@@ -1,12 +1,9 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cms";
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) { 
-    die("Connection failed: " . $conn->connect_error);
-}
+session_start();
+if (!isset($_SESSION['u_id'])) {
+    echo "<script>alert('You must be logged in to view this page.'); window.location.href='login.php';</script>";
+} else {
+include 'mycon.php';
 ?>
 
 <!DOCTYPE html>
@@ -116,7 +113,18 @@ if ($conn->connect_error) {
                     $insert_post_sql = "INSERT INTO all_posts (p_title, p_description, p_content, p_pic, p_date, p_user) VALUES ('$p_title', '$p_description', '$p_content', '$pic_name', '$p_date', '$id')";
                     
                     if ($conn->query($insert_post_sql) === TRUE) {
-                        echo "<script>alert('Post created successfully'); window.location.href='all_posts.php';</script>";
+                        $logged_user = $_SESSION['user_id'];
+                        $user = "SELECT * FROM all_users WHERE u_id='$logged_user'";
+                        $user_result = mysqli_query($conn, $user);
+                        $row = mysqli_fetch_assoc($user_result);
+
+                        if ($row['u_is_admin'] == 'True') {
+                            echo '<script>alert("Post deleted.)</script>';
+                            echo '<script>window.open("all_posts.php","_self")</script>';
+                        }else{
+                            echo '<script>alert("Post deleted.)</script>';
+                            echo '<script>window.open("your_posts.php","_self")</script>';
+                        }
                     } else {
                         echo "Error: " . $insert_post_sql . "<br>" . $conn->error;
                     }
@@ -172,3 +180,7 @@ if ($conn->connect_error) {
 </body>
 
 </html>
+<?php
+}
+$conn->close();
+?>

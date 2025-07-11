@@ -1,12 +1,9 @@
 <?php
-$servername = "localhost";
-$username = "root"; 
-$password = "";
-$dbname = "cms";
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}   
+session_start();
+if (!isset($_SESSION['u_id'])) {
+    echo "<script>alert('You must be logged in to view this page.'); window.location.href='login.php';</script>";
+} else {
+include 'mycon.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -97,15 +94,11 @@ if ($conn->connect_error) {
                  
                     <div class="form-group">
                         <label for="">Post Description</label>
-                         <textarea rows="5" class="form-control" name="p_description">
-                        <?php echo $p_description; ?>
-                         </textarea>
+                         <textarea rows="5" class="form-control" name="p_description"><?php echo $p_description; ?></textarea>
                     </div>
                     <div class="form-group">
                         <label for="">Post Content</label>
-                        <textarea rows="15" class="form-control" name="p_content" >
-                        <?php echo $p_content; ?>
-                        </textarea>
+                        <textarea rows="15" class="form-control" name="p_content" ><?php echo $p_content; ?></textarea>
                     </div>
                     
                     <div class="form-group">
@@ -124,26 +117,51 @@ if ($conn->connect_error) {
     </div>
    <?php
    if (isset($_POST['update'])) {
-         $p_title = $_POST['p_title'] ? $_POST['p_title'] : $p_title; // Use existing title if no new title is provided
-         $p_description = $_POST['p_description'] ? $_POST['p_description'] : $p_description; 
-         $p_content = $_POST['p_content'] ? $_POST['p_content'] : $p_content; 
-         $p_pic = $_FILES['p_pic']['name'] ? $_FILES['p_pic']['name'] : $p_pic; 
-         $target = "../postImages/" . basename($p_pic);
-    
-         if (move_uploaded_file($_FILES['p_pic']['tmp_name'], $target)) {
-              echo "Image uploaded successfully";
-         } else {
-              echo "Failed to upload image";
-         }
-        
-         $update_query = "UPDATE all_posts SET p_title='$p_title', p_description='$p_description', p_content='$p_content', p_pic='$p_pic' WHERE p_id='$post_id'";
-         if (mysqli_query($conn, $update_query)) {
-              echo "<script>alert('Post updated successfully');</script>";
-              echo "<script>window.location.href='your_posts.php';</script>";
-         } else {
-              echo "Error updating post: " . mysqli_error($conn);
-         }
+    $p_id = $_GET['edit_id'];
+
+    // Fetch old values from DB
+    $sql = "SELECT * FROM all_posts WHERE p_id = '$p_id'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $old_title = $row['p_title'];
+    $old_description = $row['p_description'];
+    $old_content = $row['p_content'];
+    $old_pic = $row['p_pic'];
+
+    // Use old values if fields are empty
+    $p_title = !empty($_POST['p_title']) ? $_POST['p_title'] : $old_title;
+    $p_description = !empty($_POST['p_description']) ? $_POST['p_description'] : $old_description;
+    $p_content = !empty($_POST['p_content']) ? $_POST['p_content'] : $old_content;
+    $p_pic = !empty($_FILES['p_pic']['name']) ? $_FILES['p_pic']['name'] : $old_pic;
+    $target = "../postImages/" . basename($p_pic);
+    $p_user = $_SESSION['u_id'];
+
+    // Only move file if a new one is uploaded
+    if (!empty($_FILES['p_pic']['name'])) {
+        if (move_uploaded_file($_FILES['p_pic']['tmp_name'], $target)) {
+            echo "Image uploaded successfully";
+        } else {
+            echo "Failed to upload image";
+        }
     }
+
+    $update_query = "UPDATE all_posts SET p_title='$p_title', p_description='$p_description', p_content='$p_content', p_pic='$p_pic', p_user='$p_user' WHERE p_id='$p_id'";
+    if (mysqli_query($conn, $update_query)) {
+        $logged_user = $_SESSION['user_id'];
+        $user = "SELECT * FROM all_users WHERE u_id='$logged_user'";
+        $user_result = mysqli_query($conn, $user);
+        $row = mysqli_fetch_assoc($user_result);
+
+        if ($row['u_is_admin'] == 'True') {      
+            echo '<script>window.open("all_posts.php","_self")</script>';
+        }else{
+            echo '<script>alert("Post Updated.)</script>';
+            echo '<script>window.open("your_posts.php","_self")</script>';
+        }
+    } else {
+        echo "Error updating post: " . mysqli_error($conn);
+    }
+}
     ?>
 
     <!-- /.container-fluid -->
@@ -194,3 +212,4 @@ if ($conn->connect_error) {
 </body>
 
 </html>
+<?php } ?>

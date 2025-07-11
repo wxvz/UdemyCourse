@@ -1,12 +1,9 @@
 <?php
-$servername = "localhost";
-$username = "root"; 
-$password = "";
-$dbname = "cms";
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}   
+session_start();
+if (!isset($_SESSION['u_id'])) {
+    echo "<script>alert('You must be logged in to view this page.'); window.location.href='login.php';</script>";
+} else {
+include 'mycon.php';  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,7 +83,7 @@ if ($conn->connect_error) {
                                     <tbody>
                                         <tr>
                                         <?php
-                                        $q = "SELECT * FROM all_posts";
+                                        $q = "SELECT * FROM all_posts WHERE p_user='".$_SESSION['u_id']."' ORDER BY p_id DESC";
                                         $result = mysqli_query($conn, $q);
                                         while($row = mysqli_fetch_assoc($result)) {
                                         $p_id = $row['p_id'];
@@ -107,9 +104,9 @@ if ($conn->connect_error) {
                                             <?php echo substr($p_content, 0, 20); ?>
                                         </td>
                                         <td> 
-                                            <a href="blog_post_page.php?post_id=<?php echo $p_id;?>" class="" title="" data-toggle="tooltip"><i class="fas fa-fw fa-eye"></i></a>
+                                            <a href="blog_post_page.php?post_id=<?php echo $p_id;?>" class="" title="View" data-toggle="tooltip"><i class="fas fa-fw fa-eye"></i></a>
                                             <a href="edit_post.php?edit_id=<?php echo $p_id;?>" class="edit" title="Edit" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>
-                                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
+                                            <a href="del_post.php?del=<?php echo $p_id;?>" class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
                                         </td>
 
 
@@ -170,3 +167,7 @@ if ($conn->connect_error) {
 </body>
 
 </html>
+<?php
+}
+$conn->close();
+?>

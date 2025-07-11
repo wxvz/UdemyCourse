@@ -1,15 +1,9 @@
 <?php 
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cms";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-	die("Connection failed: " . $conn->connect_error);
-}
+session_start();
+if (!isset($_SESSION['u_id'])) {
+    echo "<script>alert('You must be logged in to view this page.'); window.location.href='login.php';</script>";
+} else {
+include 'mycon.php';
 
 if(isset($_GET['del'])) {
     $id = $_GET['del'];
@@ -22,3 +16,5 @@ if(mysqli_query($conn, $delete_query)) {
     echo "Error deleting record: " . mysqli_error($conn);
 }
 ?>
+
+<?php } ?>

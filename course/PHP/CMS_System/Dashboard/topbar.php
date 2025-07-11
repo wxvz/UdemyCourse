@@ -2,17 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cms";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include 'mycon.php';
 ?>
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
     <!-- Sidebar Toggle (Topbar) -->

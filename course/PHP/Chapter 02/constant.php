@@ -15,7 +15,7 @@
     
     //constant array
     define("colour",["red","green","blue"]);
-    echo color[0];
+    echo colour[0];
 
     function myfun() {
 

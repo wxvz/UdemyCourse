@@ -1,16 +1,9 @@
 <?php
 session_start();
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cms";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+if (!isset($_SESSION['u_id'])) {
+    echo "<script>alert('You must be logged in to view this page.'); window.location.href='login.php';</script>";
+} else {
+include 'mycon.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -242,3 +235,7 @@ if ($conn->connect_error) {
 </body>
 
 </html>
+<?php
+}
+$conn->close();
+?>

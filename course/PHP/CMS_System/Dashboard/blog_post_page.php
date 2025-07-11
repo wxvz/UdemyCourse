@@ -1,12 +1,6 @@
 <?php
-$servername = "localhost";
-$username = "root"; 
-$password = "";
-$dbname = "cms";
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}   
+session_start();
+include 'mycon.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -144,16 +138,17 @@ h1.heading {
               <li class="nav-item">
                 <a class="nav-link" href="#">Contact us</a>
               </li>
-           
-              
-              <li class="nav-item">
-                <a class="nav-link" href="logout.php">Logout</a>
-              </li>
-          
-              <li class="nav-item">
-                <a class="nav-link" href="dashboard.php">Dashboard</a>
-              </li>
-           
+              <?php
+              if (isset($_SESSION['u_id'])) {
+
+              ?>
+                <li class="nav-item">
+                  <a class="nav-link" href="dashboard.php">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="logout.php">Logout</a>
+                </li>
+              <?php } else { ?>
                 <li class="nav-item">
                 <a class="nav-link" href="register.php">Register</a>
                 </li>
@@ -161,6 +156,7 @@ h1.heading {
                 <li class="nav-item">
                 <a class="nav-link" href="login.php">Login</a>
                 </li>
+              <?php } ?>
               
 
             </ul>

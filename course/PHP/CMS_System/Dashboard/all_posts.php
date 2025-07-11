@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['u_id'])) {
+    echo "<script>alert('You must be logged in to view this page.'); window.location.href='login.php';</script>";
+} else {
+include 'mycon.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,7 +63,7 @@
                         </div>
                     </div>
                     <!-- Page Heading -->
-                 
+
                     <div class="card shadow mb-4">
                         
                         <div class="card-body">
@@ -68,29 +75,51 @@
                                             <th>Description</th>
                                             <th>Picture</th>
                                             <th>Content</th>
-                                            <th>Creater</th>
+                                            <th>Author</th>
                                             <th>Action</th>
 
                                         </tr>
                                     </thead>
-
+                                    <?php 
+                                    $sql = "SELECT * FROM all_posts";
+                                    $result = mysqli_query($conn, $sql);
+                                    if (mysqli_num_rows($result) > 0) {
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            $p_id = $row['p_id'];
+                                            $p_title = $row['p_title'];
+                                            $p_description = $row['p_description'];
+                                            $p_content = $row['p_content'];
+                                            $p_pic = $row['p_pic'];
+                                            $p_user = $row['p_user'];
+                                            // Fetch user name
+                                            $user_query = "SELECT u_name FROM all_users WHERE u_id='$p_user'";
+                                            $user_result = mysqli_query($conn, $user_query);
+                                            $user_row = mysqli_fetch_assoc($user_result);
+                                            $author_name = isset($user_row['u_name']) ? $user_row['u_name'] : 'Unknown';
+                                    ?>
                                     <tbody>
-                                            <td>Value</td>
-                                            <td>Value</td>
-                                            <td>Value</td>
-                                            <td>Value</td>
-                                            <td>Value</td>
-
+                                            <td><?php echo $p_title;?></td>
+                                            <td><?php echo $p_description;?></td>
+                                            <td>
+                                                <img src="../postImages/<?php echo $p_pic;?>" width="100" height="100" alt="">
+                                            </td>
+                                            <td><?php echo substr($p_content, 0, 50) . '...';?></td>
+                                            <td><?php echo $author_name;?></td>
                                         
-                        <td> 
-                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-fw fa-eye"></i></a>
-                            <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>
-                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
-                        </td>
+                                    <td> 
+                                        <a href="blog_post_page.php?post_id=<?php echo $p_id;?>" class="" title="View" data-toggle="tooltip"><i class="fas fa-fw fa-eye"></i></a>
+                                        <a href="edit_post.php?edit_id=<?php echo $p_id;?>" class="edit" title="Edit" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>
+                                        <a href="del_post.php?del=<?php echo $p_id;?>" class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
+                                    </td>
 
 
                                         </tr>
-
+                                        <?php 
+                                        }
+                                        } else {
+                                            echo "<tr><td colspan='6'>No posts found</td></tr>";
+                                        }
+                                    ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -146,3 +175,7 @@
 </body>
 
 </html>
+<?php
+}
+$conn->close();
+?>
