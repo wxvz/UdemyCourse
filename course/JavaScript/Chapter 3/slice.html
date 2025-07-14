@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slice Example</title>
+</head>
+<body>
+    <script>
+        var fruits = ["apple", "banana", "cherry", "date", "elderberry"];
+        document.write("Original array: " + fruits + "<br>");
+
+        // Using slice to get a portion of the array
+        var slicedFruits = fruits.slice(1, 4);
+        document.write("Sliced array (from index 1 to 4): " + slicedFruits + "<br>");
+
+        // Using slice to get the last two elements
+        var lastTwoFruits = fruits.slice(-2);
+        document.write("Last two elements: " + lastTwoFruits + "<br>");
+
+        // Using slice with no arguments to create a copy of the array
+        var copiedFruits = fruits.slice();
+        document.write("Copied array: " + copiedFruits + "<br>");   
+    </script>
+</body>
+</html>

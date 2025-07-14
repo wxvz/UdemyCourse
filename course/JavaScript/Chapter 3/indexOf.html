@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IndexOf Example</title>
+</head>
+<body>
+    <script>
+        var fruits = ["apple","bannana","apple","orange","bannana"];
+        document.write("Original array: " + fruits + "<br>");
+        // Using indexOf to find the first occurrence of "apple"
+        var index = fruits.indexOf("apple");
+        document.write("Index of first 'apple': " + index + "<br>");
+        // Using indexOf to find the first occurrence of "bannana"
+        var indexBannana = fruits.indexOf("bannana");   
+        document.write("Index of first 'bannana': " + indexBannana + "<br>");
+        // Using indexOf to find an element not in the array
+        var indexNotFound = fruits.indexOf("grape");
+        document.write("Index of first 'grape': " + indexNotFound + "<br>");    
+    </script>
+</body>
+</html>

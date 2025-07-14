@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shift and Unshift Example</title>
+</head>
+<body>
+    <script>
+        var numbers = [1, 2, 3, 4, 5];
+        document.write("Original array: " + numbers + "<br>");
+
+        // Shift removes the first element of the array
+        var shifted = numbers.shift();
+        document.write("After shift: " + numbers + "<br>");
+        document.write("Shifted element: " + shifted + "<br>");
+
+        // Unshift adds an element to the beginning of the array
+        numbers.unshift(0);
+        document.write("After unshift: " + numbers + "<br>");
+    </script>
+</body>
+</html>

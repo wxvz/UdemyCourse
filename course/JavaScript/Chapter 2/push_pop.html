@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Push and Pop Example</title>
+</head>
+<body>
+    <script>
+        var numbers = [1, 2, 3, 4, 5];
+        document.write("Original array: " + numbers + "<br>");
+
+        // Push adds an element to the end of the array
+        numbers.push(6);
+        document.write("After push: " + numbers + "<br>");
+
+        // Pop deletes the last element
+        var popped = numbers.pop();
+        document.write("After pop: " + numbers + "<br>");
+        document.write("Popped element: " + popped + "<br>");
+    </script>
+</body>
+</html>
