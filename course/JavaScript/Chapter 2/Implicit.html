@@ -1,96 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Implicit Type Conversion</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        
-        function displayMessage() {
-            let message = "Implicit type conversion in JavaScript allows variables of different types to be combined in expressions. For example, adding a number and a string will convert the number to a string.";
-            document.write("<p>" + message + "</p>");
-        }
-        // Implicit type conversion examples
-       function numToString() {
-            let num = 5;
-            let str = "10";
-            let result = num + str; // Implicit conversion of number to string
-            document.write("<p>Result of implicit conversion: " + result + "</p>");
-        }
-        
-        function stringToNumber() {
-            let str = "20";
-            let num = 5;
-            let result = str - num; // Implicit conversion of string to number
-            document.write("<p>Result of implicit conversion: " + result + "</p>");
-        }
-        function numToNull() {
-            let num = 10;
-            let result = num + null;
-            document.write("<p>Result of adding number and null: " + result + "</p>");
-        }
-        function numToBoolean() {
-            let num = 10;
-            let result = num + true ;
-            document.write("<p>Result of adding number and Boolean: " + result + "</p>");
-            document.write("The variable type of number + boolean is a "+ typeof(result))
-        }
-        function booleanToString() {
-            let bool = true;
-            let str = "Hola";
-            let result = bool + str;
-            document.write("<p>The result of adding bool + string id " + result + "</p>");
-            document.write("The variable type of boolean + string is a "+ typeof(result))
-        }
-        // case 2
-        function cases() {
+      function displayMessage() {
+        let message =
+          "Implicit type conversion in JavaScript allows variables of different types to be combined in expressions. For example, adding a number and a string will convert the number to a string.";
+        document.write("<p>" + message + "</p>");
+      }
+      // Implicit type conversion examples
+      function numToString() {
+        let num = 5;
+        let str = "10";
+        let result = num + str; // Implicit conversion of number to string
+        document.write("<p>Result of implicit conversion: " + result + "</p>");
+      }
 
-            function case2() {
-                let num = 15;
-                let str = "8";
-                let result =  num * str; // Implicit conversion of string to number
-                document.write("<p>Result of implicit conversion in case 2: " + result + "</p>");
-                document.write("The variable type of number - string is a "+ typeof(result))
-            }
-            function case3() {
-                let str1 = "franl";
-                let str2 = "aka";
-                
-            }
-
+      function stringToNumber() {
+        let str = "20";
+        let num = 5;
+        let result = str - num; // Implicit conversion of string to number
+        document.write("<p>Result of implicit conversion: " + result + "</p>");
+      }
+      function numToNull() {
+        let num = 10;
+        let result = num + null;
+        document.write(
+          "<p>Result of adding number and null: " + result + "</p>"
+        );
+      }
+      function numToBoolean() {
+        let num = 10;
+        let result = num + true;
+        document.write(
+          "<p>Result of adding number and Boolean: " + result + "</p>"
+        );
+        document.write(
+          "The variable type of number + boolean is a " + typeof result
+        );
+      }
+      function booleanToString() {
+        let bool = true;
+        let str = "Hola";
+        let result = bool + str;
+        document.write(
+          "<p>The result of adding bool + string id " + result + "</p>"
+        );
+        document.write(
+          "The variable type of boolean + string is a " + typeof result
+        );
+      }
+      // case 2
+      function cases() {
+        case2();
+        case3();
+        function case2() {
+          let num = 15;
+          let str = "8";
+          let result = num * str; // Implicit conversion of string to number
+          document.write(
+            "<p>Result of implicit conversion in case 2: " + result + "</p>"
+          );
+          document.write(
+            "The variable type of number - string is a " + typeof result
+          );
         }
-
-        App();
-        function App () {
-            displayMessage();
-            stringToNumber();
-            numToNull();
-            numToString();
-            numToBoolean();
-            booleanToString();
-            case2();
-            document.write("<p>Implicit type conversion examples are shown above.</p>");
+        function case3() {
+          let str1 = "frank";
+          let str2 = "aka";
+          let result = str1 - str2;
+          document.write("<br><br> case 3 = frank - aka");
+          document.write(
+            "<p>Result of implicit conversion in case 3: " + result + "</p>"
+          );
         }
+      }
 
+      App();
+      function App() {
+        displayMessage();
+        stringToNumber();
+        numToNull();
+        numToString();
+        numToBoolean();
+        booleanToString();
+        cases();
+        document.write(
+          "<p>Implicit type conversion examples are shown above.</p>"
+        );
+      }
 
-        // Implicit type conversion can lead to unexpected results, so it's important to be aware of how JavaScript handles different types in expressions.
-        document.write("<p>Note: Implicit type conversion can lead to unexpected results, so it's important to be aware of how JavaScript handles different types in expressions.</p>");
-        // For example, adding a number and a string will convert the number to a string.
-        document.write("<p>For example, adding a number and a string will convert the number to a string.</p>");
-        // This can lead to unexpected results, so it's important to be aware of how JavaScript handles different types in expressions.
-        document.write("<p>This can lead to unexpected results, so it's important to be aware of how JavaScript handles different types in expressions.</p>");
-        // Implicit type conversion is a powerful feature of JavaScript, but it can also lead to unexpected results if not used carefully.
-        document.write("<p>Implicit type conversion is a powerful feature of JavaScript, but it can also lead to unexpected results if not used carefully.</p>");
-        // It's important to be aware of how JavaScript handles different types in expressions and to use explicit type conversion when necessary.
-        document.write("<p>It's important to be aware of how JavaScript handles different types in expressions and to use explicit type conversion when necessary.</p>");
-        // For example, using the Number() function to convert a string to a number.
-        document.write("<p>For example, using the Number() function to convert a string to a number.</p>");
-        // This can help avoid unexpected results when working with different types in JavaScript.
-        document.write("<p>This can help avoid unexpected results when working with different types in JavaScript.</p>");
-
-        
+      // Implicit type conversion can lead to unexpected results, so it's important to be aware of how JavaScript handles different types in expressions.
+      document.write(
+        "<p>Note: Implicit type conversion can lead to unexpected results, so it's important to be aware of how JavaScript handles different types in expressions.</p>"
+      );
+      // For example, adding a number and a string will convert the number to a string.
+      document.write(
+        "<p>For example, adding a number and a string will convert the number to a string.</p>"
+      );
+      // This can lead to unexpected results, so it's important to be aware of how JavaScript handles different types in expressions.
+      document.write(
+        "<p>This can lead to unexpected results, so it's important to be aware of how JavaScript handles different types in expressions.</p>"
+      );
+      // Implicit type conversion is a powerful feature of JavaScript, but it can also lead to unexpected results if not used carefully.
+      document.write(
+        "<p>Implicit type conversion is a powerful feature of JavaScript, but it can also lead to unexpected results if not used carefully.</p>"
+      );
+      // It's important to be aware of how JavaScript handles different types in expressions and to use explicit type conversion when necessary.
+      document.write(
+        "<p>It's important to be aware of how JavaScript handles different types in expressions and to use explicit type conversion when necessary.</p>"
+      );
+      // For example, using the Number() function to convert a string to a number.
+      document.write(
+        "<p>For example, using the Number() function to convert a string to a number.</p>"
+      );
+      // This can help avoid unexpected results when working with different types in JavaScript.
+      document.write(
+        "<p>This can help avoid unexpected results when working with different types in JavaScript.</p>"
+      );
     </script>
-</body>
+  </body>
 </html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>problem related to if statement</title>
+  </head>
+  <body>
+    <script>
+      var num = Number(window.prompt("Enter Number:"));
+      if (num % 2 == 0) {
+        document.write("<p>" + num + " is an even number</p>");
+      } else if (num % 2 == 1) {
+        document.write("<p>" + num + " is an odd number</p>");
+      } else {
+        document.write("<p>Invalid input. Please enter a valid number.</p>");
+      }
+
+      var vowel = window.prompt("Enter a letter:");
+      switch (vowel.toLowerCase()) {
+        case "a":
+        case "e":
+        case "i":
+        case "o":
+        case "u":
+          document.write("<p>" + vowel + " is a vowel.</p>");
+          break;
+        default:
+          document.write("<p>" + vowel + " is not a vowel.</p>");
+      }
+
+      function table(num) {
+        for (i = 1; i <= 12; i++) {
+          document.write(i + " * " + num + " = " + i * num + "<br>");
+        }
+      }
+      var multiple = Number(window.prompt("Enter multiple"));
+      table(multiple);
+    </script>
+  </body>
+</html>
